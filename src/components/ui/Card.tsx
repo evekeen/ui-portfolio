@@ -14,8 +14,8 @@ export const Card: React.FC<CardProps> = ({
   hover = true,
   onClick
 }) => {
-  const baseClasses = 'bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transition-all duration-300';
-  const hoverClasses = hover ? 'hover:shadow-xl hover:-translate-y-1' : '';
+  const baseClasses = 'bg-white rounded-xl shadow-lg p-6 transition-all duration-300 border border-gray-100';
+  const hoverClasses = hover ? 'hover:shadow-2xl hover:-translate-y-2 hover:shadow-blue-500/10' : '';
   const clickableClasses = onClick ? 'cursor-pointer' : '';
   
   return (
