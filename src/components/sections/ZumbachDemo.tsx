@@ -270,6 +270,7 @@ const ZumbachDemoContent: React.FC = () => {
                   <li>• Build modular, reusable component library</li>
                   <li>• Modernize device dashboard UI with React components</li>
                   <li>• Customizable dashboard (configure devices, measurements, display formats)</li>
+                  <li>• Role-based authorization and access control system</li>
                   <li>• UI theme selection and visual customization system</li>
                   <li>• Implement responsive design for 7" displays</li>
                   <li>• Optimize for distance readability and touch interaction</li>
@@ -311,10 +312,17 @@ const ZumbachDemoContent: React.FC = () => {
           <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
             Interactive UI Demo
           </h2>
-          <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-12">
+          <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
             Experience how device interfaces can be modernized with customizable components, 
             real-time data visualization, and industrial-grade design patterns.
           </p>
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 max-w-3xl mx-auto mb-12">
+            <p className="text-sm text-blue-800">
+              <strong>Note:</strong> This interactive demo is provided for demonstration purposes and fun exploration. 
+              The actual device components will be specifically designed and tailored to your industrial 
+              requirements, measurement protocols, and brand guidelines.
+            </p>
+          </div>
         </motion.div>
 
         <motion.div
