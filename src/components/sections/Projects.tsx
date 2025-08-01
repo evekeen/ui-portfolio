@@ -29,24 +29,22 @@ const renderModalContent = (projectId: string) => {
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Mobile AI Trainer</h3>
-              <div className="bg-gray-100 rounded-lg p-4 aspect-[3/4] flex items-center justify-center">
-                <div className="text-center text-gray-500">
-                  <div className="w-16 h-16 bg-blue-200 rounded-lg mx-auto mb-2 flex items-center justify-center">📱</div>
-                  <p className="text-sm">iOS Bedside Trainer App</p>
-                  <p className="text-xs mt-1">Computer Vision & Voice AI</p>
-                </div>
-              </div>
+              <img 
+                src="/src/assets/screenshots/eh-exercise.png" 
+                alt="Enabled Health iOS Exercise Trainer" 
+                className="w-full h-auto rounded-lg shadow-md border border-gray-200"
+              />
+              <p className="text-sm text-gray-600 mt-2 text-center">iOS Bedside Trainer App with Computer Vision & Voice AI</p>
             </div>
 
             <div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Clinical Dashboard</h3>
-              <div className="bg-gray-100 rounded-lg p-4 aspect-[4/3] flex items-center justify-center">
-                <div className="text-center text-gray-500">
-                  <div className="w-16 h-16 bg-green-200 rounded-lg mx-auto mb-2 flex items-center justify-center">📊</div>
-                  <p className="text-sm">Web-based Analytics</p>
-                  <p className="text-xs mt-1">Patient Progress & Metrics</p>
-                </div>
-              </div>
+              <img 
+                src="/src/assets/screenshots/eh-dashboard.png" 
+                alt="Enabled Health Clinical Dashboard" 
+                className="w-full h-auto rounded-lg shadow-md border border-gray-200"
+              />
+              <p className="text-sm text-gray-600 mt-2 text-center">Web-based Analytics for Patient Progress & Metrics</p>
             </div>
           </div>
 
