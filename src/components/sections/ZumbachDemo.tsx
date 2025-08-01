@@ -207,8 +207,11 @@ const ZumbachDemoContent: React.FC = () => {
               <div>
                 <h4 className="font-semibold text-gray-900 mb-4">Technical Development</h4>
                 <ul className="space-y-2 text-gray-700">
-                  <li>• Modernize device dashboard UI with React components</li>
+                  <li>• Design protocol for device discovery and unified measurement reporting</li>
                   <li>• Build modular, reusable component library</li>
+                  <li>• Modernize device dashboard UI with React components</li>
+                  <li>• Customizable dashboard (configure devices, measurements, display formats)</li>
+                  <li>• UI theme selection and visual customization system</li>
                   <li>• Implement responsive design for 7" displays</li>
                   <li>• Optimize for distance readability and touch interaction</li>
                   <li>• Set up CI/CD pipeline and automated testing</li>
@@ -217,11 +220,11 @@ const ZumbachDemoContent: React.FC = () => {
               <div>
                 <h4 className="font-semibold text-gray-900 mb-4">Leadership & Process</h4>
                 <ul className="space-y-2 text-gray-700">
-                  <li>• Mentor development team on React best practices</li>
                   <li>• Set up agile development processes and workflows</li>
+                  <li>• Mentor development team on React best practices</li>
+                  <li>• Establish design system and coding standards</li>
                   <li>• Conduct user interviews with technicians and operators</li>
                   <li>• Collect feedback and iterate on UI/UX improvements</li>
-                  <li>• Establish design system and coding standards</li>
                 </ul>
               </div>
             </div>
