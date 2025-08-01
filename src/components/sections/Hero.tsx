@@ -71,6 +71,7 @@ export const Hero: React.FC = () => {
           <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-md">
             <Users className="w-5 h-5 text-cyan-600" />
             <span className="text-gray-700 font-medium">5,000+ Enterprise Customers</span>
+            <span className="text-gray-500 text-sm">(Structure)</span>
           </div>
           <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-md">
             <Zap className="w-5 h-5 text-yellow-500" />
@@ -113,12 +114,12 @@ export const Hero: React.FC = () => {
           <p className="text-gray-500 mb-4">Specialized in:</p>
           <div className="flex flex-wrap justify-center gap-2 text-sm">
             {[
-              'React Component Libraries',
-              'Embedded System UIs',
-              'Real-time Data Visualization',
-              'Touch Interface Optimization',
-              'Performance-Critical Applications',
-              'Enterprise-Scale Architecture'
+              'AI Integration & Computer Vision',
+              'Mobile App Development',
+              'User Interface Design',
+              'Scalable Frontend Architecture',
+              'Agile Development & Requirements',
+              'Real-time Data Processing'
             ].map((skill, index) => (
               <motion.span
                 key={skill}

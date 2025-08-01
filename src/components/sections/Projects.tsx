@@ -3,15 +3,9 @@ import { motion } from 'framer-motion';
 import { ExternalLink, Github, Star, Users, TrendingUp } from 'lucide-react';
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
+import { Modal } from '../ui/Modal';
 import { projects } from '../../data/projects';
 
-const categoryFilters = [
-  { id: 'all', label: 'All Projects' },
-  { id: 'enterprise', label: 'Enterprise' },
-  { id: 'mobile', label: 'Mobile' },
-  { id: 'embedded', label: 'Embedded' },
-  { id: 'ai', label: 'AI/ML' },
-];
 
 const categoryIcons = {
   enterprise: Users,
@@ -21,11 +15,8 @@ const categoryIcons = {
 };
 
 export const Projects: React.FC = () => {
-  const [activeFilter, setActiveFilter] = useState('all');
-
-  const filteredProjects = activeFilter === 'all' 
-    ? projects 
-    : projects.filter(project => project.category === activeFilter);
+  const filteredProjects = projects;
+  const [isEnabledHealthModalOpen, setIsEnabledHealthModalOpen] = useState(false);
 
   return (
     <section id="projects" className="px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 bg-gray-50">
@@ -46,28 +37,6 @@ export const Projects: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Category Filters */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-4 mb-12"
-        >
-          {categoryFilters.map((filter) => (
-            <button
-              key={filter.id}
-              onClick={() => setActiveFilter(filter.id)}
-              className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                activeFilter === filter.id
-                  ? 'bg-blue-600 text-white shadow-lg'
-                  : 'bg-white text-gray-600 hover:bg-gray-100 shadow'
-              }`}
-            >
-              {filter.label}
-            </button>
-          ))}
-        </motion.div>
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -156,7 +125,17 @@ export const Projects: React.FC = () => {
 
                     {/* Action Buttons */}
                     <div className="flex gap-4 pt-6 border-t border-gradient-to-r from-gray-200 via-gray-100 to-gray-200">
-                      {project.demoUrl && (
+                      {project.id === 'enabled-health' ? (
+                        <Button
+                          variant="primary"
+                          size="sm"
+                          onClick={() => setIsEnabledHealthModalOpen(true)}
+                          className="flex-1"
+                        >
+                          <ExternalLink className="w-4 h-4 mr-2" />
+                          Learn More
+                        </Button>
+                      ) : project.demoUrl ? (
                         <Button
                           variant="primary"
                           size="sm"
@@ -165,7 +144,18 @@ export const Projects: React.FC = () => {
                           className="flex-1"
                         >
                           <ExternalLink className="w-4 h-4 mr-2" />
-                          View Demo
+                          Learn More
+                        </Button>
+                      ) : (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => {
+                            document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                          }}
+                          className="flex-1"
+                        >
+                          Learn More
                         </Button>
                       )}
                       {project.githubUrl && (
@@ -178,18 +168,6 @@ export const Projects: React.FC = () => {
                         >
                           <Github className="w-4 h-4 mr-2" />
                           Source
-                        </Button>
-                      )}
-                      {!project.demoUrl && !project.githubUrl && (
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => {
-                            document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                          }}
-                          className="flex-1"
-                        >
-                          Learn More
                         </Button>
                       )}
                     </div>
@@ -223,6 +201,89 @@ export const Projects: React.FC = () => {
             Schedule a Technical Discussion
           </Button>
         </motion.div>
+
+        {/* Enabled Health Modal */}
+        <Modal
+          isOpen={isEnabledHealthModalOpen}
+          onClose={() => setIsEnabledHealthModalOpen(false)}
+          title="Enabled Health - AI Physical Therapy Trainer"
+        >
+          <div className="p-6 space-y-6">
+            <div className="prose max-w-none">
+              <p className="text-lg text-gray-600 mb-6">
+                AI-powered physical therapy trainer for hospitals, helping patients stay active during recovery 
+                with computer vision-based engagement tracking and voice AI guidance.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Mobile AI Trainer */}
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Mobile AI Trainer</h3>
+                <div className="bg-gray-100 rounded-lg p-4 aspect-[3/4] flex items-center justify-center">
+                  <div className="text-center text-gray-500">
+                    <div className="w-16 h-16 bg-blue-200 rounded-lg mx-auto mb-2 flex items-center justify-center">
+                      📱
+                    </div>
+                    <p className="text-sm">iOS Bedside Trainer App</p>
+                    <p className="text-xs mt-1">Computer Vision & Voice AI</p>
+                  </div>
+                </div>
+                <div className="mt-4 space-y-2 text-sm text-gray-600">
+                  <p>• Real-time pose estimation and motion tracking</p>
+                  <p>• Voice AI for patient communication</p>
+                  <p>• Exercise guidance and form monitoring</p>
+                  <p>• Engagement tracking and feedback</p>
+                </div>
+              </div>
+
+              {/* Clinical Dashboard */}
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Clinical Dashboard</h3>
+                <div className="bg-gray-100 rounded-lg p-4 aspect-[4/3] flex items-center justify-center">
+                  <div className="text-center text-gray-500">
+                    <div className="w-16 h-16 bg-green-200 rounded-lg mx-auto mb-2 flex items-center justify-center">
+                      📊
+                    </div>
+                    <p className="text-sm">Web-based Analytics</p>
+                    <p className="text-xs mt-1">Patient Progress & Metrics</p>
+                  </div>
+                </div>
+                <div className="mt-4 space-y-2 text-sm text-gray-600">
+                  <p>• Patient progress tracking and analytics</p>
+                  <p>• Exercise completion rates and trends</p>
+                  <p>• Clinical alerts and notifications</p>
+                  <p>• Integration with hospital systems</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-blue-50 rounded-lg p-6">
+              <h4 className="font-semibold text-blue-900 mb-3">Key Achievements</h4>
+              <div className="grid md:grid-cols-2 gap-4 text-sm text-blue-800">
+                <div>
+                  <p>• Won MA Challenge Grant</p>
+                  <p>• Raised $200k in funding</p>
+                </div>
+                <div>
+                  <p>• Launched two hospital pilots</p>
+                  <p>• 80% of code written by AI agents</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gray-50 rounded-lg p-6">
+              <h4 className="font-semibold text-gray-900 mb-3">Technology Stack</h4>
+              <div className="flex flex-wrap gap-2">
+                {['Swift', 'SwiftUI', 'Node.js', 'TypeScript', 'Computer Vision', 'Voice AI', 'LLMs', 'Google Cloud', 'Firebase'].map((tech) => (
+                  <span key={tech} className="bg-white px-3 py-1 rounded-full text-sm text-gray-700 border">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Modal>
       </div>
     </section>
   );

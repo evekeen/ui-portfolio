@@ -53,35 +53,20 @@ export const projects: Project[] = [
   },
   {
     id: 'ace-trace',
-    title: 'Ace Trace Golf Analytics',
+    title: 'Ace Trace - Golf Shot Tracing',
     subtitle: 'Computer Vision Sports App',
-    description: 'Created mobile sports video editor with custom computer vision model for golf ball flight tracking. Achieved 6,000 paying subscribers with 4.4 App Store rating through on-device ML inference.',
-    technologies: ['Swift', 'SwiftUI', 'Jetpack Compose', 'Python', 'TensorFlow Lite', 'Computer Vision', 'Video Processing'],
+    description: 'Created mobile sports video editor with custom computer vision model for golf ball flight tracking. Achieved 6,000 paying subscribers with 4.4 App Store rating through on-device ML inference. Successfully sold to strategic acquirer.',
+    technologies: ['Swift', 'SwiftUI', 'Jetpack Compose', 'PyTorch', 'Computer Vision', 'Video Processing'],
     highlights: [
       '6,000 paying subscribers with $15K MRR',
       '4.4 App Store rating with 1,100+ reviews',
       'On-device neural network inference',
       'Real-time video overlay rendering at 60fps',
-      'Cross-platform mobile UI consistency'
+      'Successfully sold - strategic exit achieved'
     ],
     imageUrl: '/images/ace-trace-preview.jpg',
+    demoUrl: 'https://acetrace.app',
     category: 'mobile'
-  },
-  {
-    id: 'openway-kiosk',
-    title: 'OpenWay Banking Kiosk',
-    subtitle: 'Embedded Touchscreen Interface',
-    description: 'Developed configuration management system for banking software with customizable interactive screens. Built for ATM and kiosk environments with multi-display support.',
-    technologies: ['Java', 'JavaScript', 'X11', 'Wayland', 'Embedded Linux', 'Touch Interface'],
-    highlights: [
-      'Multi-display support for kiosk environments',
-      'Configuration management for screen customization',
-      'Touch-optimized interface for public use',
-      'Secure banking software integration',
-      'Accessibility features for diverse users'
-    ],
-    imageUrl: '/images/openway-kiosk-preview.jpg',
-    category: 'embedded'
   }
 ];
 
