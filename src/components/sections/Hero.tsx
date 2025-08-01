@@ -41,11 +41,11 @@ export const Hero: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-gray-900 mb-6">
-            Transforming
+            Building
             <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
-              {' '}Industrial & Medical{' '}
+              {' '}AI-Powered{' '}
             </span>
-            Device Interfaces
+            Software Solutions
           </h1>
         </motion.div>
 
@@ -55,27 +55,26 @@ export const Hero: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-xl sm:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto"
         >
-          From Legacy Systems to Modern React-Based Solutions
+          Full-Stack Development • Mobile Apps • Computer Vision • Enterprise Software
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-wrap justify-center gap-4 mb-12"
+          className="flex flex-wrap justify-center gap-4 mb-10"
         >
           <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-md">
             <Code className="w-5 h-5 text-blue-600" />
             <span className="text-gray-700 font-medium">15+ Years Experience</span>
           </div>
           <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-md">
-            <Users className="w-5 h-5 text-cyan-600" />
-            <span className="text-gray-700 font-medium">5,000+ Enterprise Customers</span>
-            <span className="text-gray-500 text-sm">(Structure)</span>
+            <Users className="w-5 h-5 text-blue-600" />
+            <span className="text-gray-700 font-medium">Successful Startup Exit</span>
           </div>
           <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-md">
-            <Zap className="w-5 h-5 text-yellow-500" />
-            <span className="text-gray-700 font-medium">Performance-Critical UIs</span>
+            <Zap className="w-5 h-5 text-blue-600" />
+            <span className="text-gray-700 font-medium">AI & Computer Vision</span>
           </div>
         </motion.div>
 
@@ -83,7 +82,7 @@ export const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          className="flex justify-center items-center"
         >
           <Button
             size="lg"
@@ -94,39 +93,28 @@ export const Hero: React.FC = () => {
             Schedule a Consultation
             <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Button>
-          <Button
-            variant="outline"
-            size="lg"
-            onClick={() => {
-              document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
-            }}
-          >
-            View My Work
-          </Button>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.2 }}
-          className="mt-16 text-center"
+          className="mt-12 text-center"
         >
-          <p className="text-gray-500 mb-4">Specialized in:</p>
-          <div className="flex flex-wrap justify-center gap-2 text-sm">
+          <p className="text-gray-500 mb-4 text-sm">Core Technologies:</p>
+          <div className="flex flex-wrap justify-center gap-3">
             {[
-              'AI Integration & Computer Vision',
-              'Mobile App Development',
-              'User Interface Design',
-              'Scalable Frontend Architecture',
-              'Agile Development & Requirements',
-              'Real-time Data Processing'
+              'Swift & iOS',
+              'React & TypeScript', 
+              'Python & PyTorch',
+              'Node.js & Cloud'
             ].map((skill, index) => (
               <motion.span
                 key={skill}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 1.4 + index * 0.1 }}
-                className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full"
+                className="bg-gradient-to-r from-blue-50 to-cyan-50 text-blue-700 px-4 py-2 rounded-full border border-blue-200 font-medium text-sm"
               >
                 {skill}
               </motion.span>

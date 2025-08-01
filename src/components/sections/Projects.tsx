@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, Star, Users, TrendingUp } from 'lucide-react';
+import { ExternalLink, Github, Star, Users, TrendingUp, Image } from 'lucide-react';
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Modal } from '../ui/Modal';
@@ -14,9 +14,126 @@ const categoryIcons = {
   ai: Star,
 };
 
+const renderModalContent = (projectId: string) => {
+  switch (projectId) {
+    case 'enabled-health':
+      return (
+        <div className="p-6 space-y-6">
+          <div className="prose max-w-none">
+            <p className="text-lg text-gray-600 mb-6">
+              AI-powered physical therapy trainer for hospitals, helping patients stay active during recovery 
+              with computer vision-based engagement tracking and voice AI guidance.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Mobile AI Trainer</h3>
+              <div className="bg-gray-100 rounded-lg p-4 aspect-[3/4] flex items-center justify-center">
+                <div className="text-center text-gray-500">
+                  <div className="w-16 h-16 bg-blue-200 rounded-lg mx-auto mb-2 flex items-center justify-center">📱</div>
+                  <p className="text-sm">iOS Bedside Trainer App</p>
+                  <p className="text-xs mt-1">Computer Vision & Voice AI</p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Clinical Dashboard</h3>
+              <div className="bg-gray-100 rounded-lg p-4 aspect-[4/3] flex items-center justify-center">
+                <div className="text-center text-gray-500">
+                  <div className="w-16 h-16 bg-green-200 rounded-lg mx-auto mb-2 flex items-center justify-center">📊</div>
+                  <p className="text-sm">Web-based Analytics</p>
+                  <p className="text-xs mt-1">Patient Progress & Metrics</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-blue-50 rounded-lg p-6">
+            <h4 className="font-semibold text-blue-900 mb-3">Key Achievements</h4>
+            <div className="grid md:grid-cols-2 gap-4 text-sm text-blue-800">
+              <div><p>• Won MA Challenge Grant</p><p>• Raised $200k in funding</p></div>
+              <div><p>• Launched two hospital pilots</p><p>• 80% of code written by AI agents</p></div>
+            </div>
+          </div>
+        </div>
+      );
+
+    case 'structure-gantt':
+      return (
+        <div className="p-6 space-y-6">
+          <p className="text-lg text-gray-600">Enterprise Gantt chart visualization with 14,000+ active installations.</p>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-gray-100 rounded-lg p-8 aspect-video flex items-center justify-center">
+              <div className="text-center text-gray-500">
+                <div className="w-16 h-16 bg-purple-200 rounded-lg mx-auto mb-2 flex items-center justify-center">📊</div>
+                <p className="text-sm">Gantt Chart Interface</p>
+              </div>
+            </div>
+            <div className="bg-gray-100 rounded-lg p-8 aspect-video flex items-center justify-center">
+              <div className="text-center text-gray-500">
+                <div className="w-16 h-16 bg-blue-200 rounded-lg mx-auto mb-2 flex items-center justify-center">⚙️</div>
+                <p className="text-sm">Timeline Management</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+
+    case 'structure-tempo':
+      return (
+        <div className="p-6 space-y-6">
+          <p className="text-lg text-gray-600">Jira portfolio management platform used by 5,000+ organizations.</p>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-gray-100 rounded-lg p-8 aspect-video flex items-center justify-center">
+              <div className="text-center text-gray-500">
+                <div className="w-16 h-16 bg-green-200 rounded-lg mx-auto mb-2 flex items-center justify-center">🏗️</div>
+                <p className="text-sm">Project Structure</p>
+              </div>
+            </div>
+            <div className="bg-gray-100 rounded-lg p-8 aspect-video flex items-center justify-center">
+              <div className="text-center text-gray-500">
+                <div className="w-16 h-16 bg-orange-200 rounded-lg mx-auto mb-2 flex items-center justify-center">📈</div>
+                <p className="text-sm">Portfolio Dashboard</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+
+    case 'ace-trace':
+      return (
+        <div className="p-6 space-y-6">
+          <p className="text-lg text-gray-600">Golf shot tracing app with 6,000 paying subscribers. Successfully sold to strategic acquirer.</p>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-gray-100 rounded-lg p-8 aspect-[3/4] flex items-center justify-center">
+              <div className="text-center text-gray-500">
+                <div className="w-16 h-16 bg-green-200 rounded-lg mx-auto mb-2 flex items-center justify-center">⛳</div>
+                <p className="text-sm">Mobile App Interface</p>
+              </div>
+            </div>
+            <div className="bg-gray-100 rounded-lg p-8 aspect-[3/4] flex items-center justify-center">
+              <div className="text-center text-gray-500">
+                <div className="w-16 h-16 bg-red-200 rounded-lg mx-auto mb-2 flex items-center justify-center">🎯</div>
+                <p className="text-sm">Ball Flight Tracking</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+
+    default:
+      return <div className="p-6">No screenshots available.</div>;
+  }
+};
+
 export const Projects: React.FC = () => {
   const filteredProjects = projects;
-  const [isEnabledHealthModalOpen, setIsEnabledHealthModalOpen] = useState(false);
+  const [activeModal, setActiveModal] = useState<string | null>(null);
+  
+  const openModal = (projectId: string) => setActiveModal(projectId);
+  const closeModal = () => setActiveModal(null);
 
   return (
     <section id="projects" className="px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 bg-gray-50">
@@ -124,51 +241,43 @@ export const Projects: React.FC = () => {
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex gap-4 pt-6 border-t border-gradient-to-r from-gray-200 via-gray-100 to-gray-200">
+                    <div className="flex gap-3 pt-6 border-t border-gradient-to-r from-gray-200 via-gray-100 to-gray-200">
                       {project.id === 'enabled-health' ? (
+                        /* Enabled Health - Only Screenshots button */
                         <Button
                           variant="primary"
                           size="sm"
-                          onClick={() => setIsEnabledHealthModalOpen(true)}
+                          onClick={() => openModal(project.id)}
                           className="flex-1"
                         >
-                          <ExternalLink className="w-4 h-4 mr-2" />
-                          Learn More
-                        </Button>
-                      ) : project.demoUrl ? (
-                        <Button
-                          variant="primary"
-                          size="sm"
-                          href={project.demoUrl}
-                          external
-                          className="flex-1"
-                        >
-                          <ExternalLink className="w-4 h-4 mr-2" />
-                          Learn More
+                          <Image className="w-4 h-4 mr-2" />
+                          Screenshots
                         </Button>
                       ) : (
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => {
-                            document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                          }}
-                          className="flex-1"
-                        >
-                          Learn More
-                        </Button>
-                      )}
-                      {project.githubUrl && (
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          href={project.githubUrl}
-                          external
-                          className="flex-1"
-                        >
-                          <Github className="w-4 h-4 mr-2" />
-                          Source
-                        </Button>
+                        /* Other projects - Both buttons */
+                        <>
+                          {project.websiteUrl && (
+                            <Button
+                              variant="primary"
+                              size="sm"
+                              href={project.websiteUrl}
+                              external
+                              className="flex-1"
+                            >
+                              <ExternalLink className="w-4 h-4 mr-2" />
+                              Learn More
+                            </Button>
+                          )}
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => openModal(project.id)}
+                            className="flex-1"
+                          >
+                            <Image className="w-4 h-4 mr-2" />
+                            Screenshots
+                          </Button>
+                        </>
                       )}
                     </div>
                   </div>
@@ -178,112 +287,16 @@ export const Projects: React.FC = () => {
           })}
         </div>
 
-        {/* Call to Action */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="text-center mt-16"
-        >
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">
-            Ready to Modernize Your Device Interfaces?
-          </h3>
-          <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-            Let's discuss how I can help transform your legacy systems into modern, 
-            user-friendly interfaces that improve efficiency and reduce errors.
-          </p>
-          <Button
-            size="lg"
-            href="https://calendly.com/ivkindev/30-minutes"
-            external
+        {/* Project Modals */}
+        {activeModal && (
+          <Modal
+            isOpen={!!activeModal}
+            onClose={closeModal}
+            title={`${projects.find(p => p.id === activeModal)?.title} - Screenshots`}
           >
-            Schedule a Technical Discussion
-          </Button>
-        </motion.div>
-
-        {/* Enabled Health Modal */}
-        <Modal
-          isOpen={isEnabledHealthModalOpen}
-          onClose={() => setIsEnabledHealthModalOpen(false)}
-          title="Enabled Health - AI Physical Therapy Trainer"
-        >
-          <div className="p-6 space-y-6">
-            <div className="prose max-w-none">
-              <p className="text-lg text-gray-600 mb-6">
-                AI-powered physical therapy trainer for hospitals, helping patients stay active during recovery 
-                with computer vision-based engagement tracking and voice AI guidance.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              {/* Mobile AI Trainer */}
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Mobile AI Trainer</h3>
-                <div className="bg-gray-100 rounded-lg p-4 aspect-[3/4] flex items-center justify-center">
-                  <div className="text-center text-gray-500">
-                    <div className="w-16 h-16 bg-blue-200 rounded-lg mx-auto mb-2 flex items-center justify-center">
-                      📱
-                    </div>
-                    <p className="text-sm">iOS Bedside Trainer App</p>
-                    <p className="text-xs mt-1">Computer Vision & Voice AI</p>
-                  </div>
-                </div>
-                <div className="mt-4 space-y-2 text-sm text-gray-600">
-                  <p>• Real-time pose estimation and motion tracking</p>
-                  <p>• Voice AI for patient communication</p>
-                  <p>• Exercise guidance and form monitoring</p>
-                  <p>• Engagement tracking and feedback</p>
-                </div>
-              </div>
-
-              {/* Clinical Dashboard */}
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Clinical Dashboard</h3>
-                <div className="bg-gray-100 rounded-lg p-4 aspect-[4/3] flex items-center justify-center">
-                  <div className="text-center text-gray-500">
-                    <div className="w-16 h-16 bg-green-200 rounded-lg mx-auto mb-2 flex items-center justify-center">
-                      📊
-                    </div>
-                    <p className="text-sm">Web-based Analytics</p>
-                    <p className="text-xs mt-1">Patient Progress & Metrics</p>
-                  </div>
-                </div>
-                <div className="mt-4 space-y-2 text-sm text-gray-600">
-                  <p>• Patient progress tracking and analytics</p>
-                  <p>• Exercise completion rates and trends</p>
-                  <p>• Clinical alerts and notifications</p>
-                  <p>• Integration with hospital systems</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-blue-50 rounded-lg p-6">
-              <h4 className="font-semibold text-blue-900 mb-3">Key Achievements</h4>
-              <div className="grid md:grid-cols-2 gap-4 text-sm text-blue-800">
-                <div>
-                  <p>• Won MA Challenge Grant</p>
-                  <p>• Raised $200k in funding</p>
-                </div>
-                <div>
-                  <p>• Launched two hospital pilots</p>
-                  <p>• 80% of code written by AI agents</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gray-50 rounded-lg p-6">
-              <h4 className="font-semibold text-gray-900 mb-3">Technology Stack</h4>
-              <div className="flex flex-wrap gap-2">
-                {['Swift', 'SwiftUI', 'Node.js', 'TypeScript', 'Computer Vision', 'Voice AI', 'LLMs', 'Google Cloud', 'Firebase'].map((tech) => (
-                  <span key={tech} className="bg-white px-3 py-1 rounded-full text-sm text-gray-700 border">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </Modal>
+            {renderModalContent(activeModal)}
+          </Modal>
+        )}
       </div>
     </section>
   );

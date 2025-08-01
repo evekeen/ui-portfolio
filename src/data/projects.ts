@@ -31,7 +31,7 @@ export const projects: Project[] = [
       'Performance optimization for 100,000+ item datasets'
     ],
     imageUrl: '/images/structure-gantt-preview.jpg',
-    demoUrl: 'https://marketplace.atlassian.com/apps/1217809/gantt-charts-for-structure-ppm-jira-roadmaps-tempo',
+    websiteUrl: 'https://marketplace.atlassian.com/apps/1217809/gantt-charts-for-structure-ppm-jira-roadmaps-tempo',
     category: 'enterprise'
   },
   {
@@ -48,7 +48,7 @@ export const projects: Project[] = [
       'Component library with 100+ reusable elements'
     ],
     imageUrl: '/images/structure-preview.jpg',
-    demoUrl: 'https://marketplace.atlassian.com/apps/34717/structure-by-tempo-jira-portfolio-management-ppm',
+    websiteUrl: 'https://marketplace.atlassian.com/apps/34717/structure-by-tempo-jira-portfolio-management-ppm',
     category: 'enterprise'
   },
   {
@@ -65,7 +65,7 @@ export const projects: Project[] = [
       'Successfully sold - strategic exit achieved'
     ],
     imageUrl: '/images/ace-trace-preview.jpg',
-    demoUrl: 'https://acetrace.app',
+    websiteUrl: 'https://acetrace.app',
     category: 'mobile'
   }
 ];
