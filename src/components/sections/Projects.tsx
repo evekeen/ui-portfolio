@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Star, Users, TrendingUp, Image, Target, Heart, BarChart3, Layers } from 'lucide-react';
+import { ExternalLink, Star, Image, Target, Heart, BarChart3, Layers } from 'lucide-react';
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Modal } from '../ui/Modal';
@@ -24,7 +24,7 @@ const renderModalContent = (projectId: string) => {
             <div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Mobile AI Trainer</h3>
               <img 
-                src="/src/assets/screenshots/eh-exercise.png" 
+                src="/screenshots/eh-exercise.png" 
                 alt="Enabled Health iOS Exercise Trainer" 
                 className="w-full h-auto rounded-lg shadow-md border border-gray-200"
               />
@@ -34,7 +34,7 @@ const renderModalContent = (projectId: string) => {
             <div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Clinical Dashboard</h3>
               <img 
-                src="/src/assets/screenshots/eh-dashboard.png" 
+                src="/screenshots/eh-dashboard.png" 
                 alt="Enabled Health Clinical Dashboard" 
                 className="w-full h-auto rounded-lg shadow-md border border-gray-200"
               />
@@ -50,7 +50,7 @@ const renderModalContent = (projectId: string) => {
           <p className="text-lg text-gray-600">Enterprise Gantt chart visualization with 7,000+ active installations.</p>
           <div className="flex justify-center">
             <img 
-              src="/src/assets/screenshots/gantt.png" 
+              src="/screenshots/gantt.png" 
               alt="Structure.Gantt Interface" 
               className="max-w-full h-auto rounded-lg shadow-lg border border-gray-200"
             />
@@ -64,7 +64,7 @@ const renderModalContent = (projectId: string) => {
           <p className="text-lg text-gray-600">Jira portfolio management platform used by 5,000+ organizations.</p>
           <div className="flex justify-center">
             <img 
-              src="/src/assets/screenshots/structure.png" 
+              src="/screenshots/structure.png" 
               alt="Structure by Tempo Interface" 
               className="max-w-full h-auto rounded-lg shadow-lg border border-gray-200"
             />
@@ -82,7 +82,7 @@ const renderModalContent = (projectId: string) => {
             <div>
               <h4 className="text-lg font-semibold text-gray-900 mb-3">Project Management</h4>
               <img 
-                src="/src/assets/screenshots/acetrace-projects.png" 
+                src="/screenshots/acetrace-projects.png" 
                 alt="Ace Trace Projects Interface" 
                 className="w-full h-auto rounded-lg shadow-md border border-gray-200"
               />
@@ -92,7 +92,7 @@ const renderModalContent = (projectId: string) => {
             <div>
               <h4 className="text-lg font-semibold text-gray-900 mb-3">Style Customization</h4>
               <img 
-                src="/src/assets/screenshots/acetrace-style.png" 
+                src="/screenshots/acetrace-style.png" 
                 alt="Ace Trace Style Options" 
                 className="w-full h-auto rounded-lg shadow-md border border-gray-200"
               />
@@ -102,7 +102,7 @@ const renderModalContent = (projectId: string) => {
             <div>
               <h4 className="text-lg font-semibold text-gray-900 mb-3">Visual Effects</h4>
               <img 
-                src="/src/assets/screenshots/acetrace-effects.png" 
+                src="/screenshots/acetrace-effects.png" 
                 alt="Ace Trace Visual Effects" 
                 className="w-full h-auto rounded-lg shadow-md border border-gray-200"
               />
@@ -119,8 +119,8 @@ const renderModalContent = (projectId: string) => {
                 className="max-w-full h-auto rounded-lg shadow-lg border border-gray-200"
                 style={{ maxHeight: '400px' }}
               >
-                <source src="/src/assets/screenshots/acetrace-video.mov" type="video/quicktime" />
-                <source src="/src/assets/screenshots/acetrace-video.mov" type="video/mp4" />
+                <source src="/screenshots/acetrace-video.mov" type="video/quicktime" />
+                <source src="/screenshots/acetrace-video.mov" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>
