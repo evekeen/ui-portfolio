@@ -36,8 +36,7 @@ export const IndustrialButton: React.FC<IndustrialButtonProps> = ({
       neon: 'rounded-lg border-2 shadow-lg hover:shadow-2xl hover:shadow-current/50',
       flat: 'border-none rounded-md',
       raised: 'shadow-lg hover:shadow-xl rounded-md',
-      outlined: 'border-2 bg-transparent rounded-md',
-      glassmorphism: 'backdrop-blur-sm border border-white/20 rounded-lg'
+      outlined: 'border-2 bg-transparent rounded-md'
     };
     
     const baseClasses = `font-semibold transition-all duration-200 ${scaleClasses[scale]} ${styleClasses[effectiveStyle] || styleClasses.flat}`;

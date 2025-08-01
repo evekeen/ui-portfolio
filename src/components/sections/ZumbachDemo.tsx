@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Play, Pause, Settings, Zap, DollarSign, Clock, Users, Target, Square, RotateCcw } from 'lucide-react';
+import { Play, Settings, Zap, DollarSign, Clock, Users, Target, Square, RotateCcw } from 'lucide-react';
 import { ThemeProvider, useTheme } from '../../contexts/ThemeContext';
 import { StyleControlPanel } from '../ui/StyleControlPanel';
 import { MeasurementDisplay } from '../ui/MeasurementDisplay';
@@ -95,8 +95,6 @@ const ModernInterface: React.FC<{ data: MeasurementData[] }> = ({ data }) => {
         return `${baseClasses} rounded-lg shadow-lg hover:shadow-xl`;
       case 'outlined':
         return `${baseClasses} rounded-lg border-2`;
-      case 'glassmorphism':
-        return `${baseClasses} rounded-2xl backdrop-blur-md bg-white/20 border border-white/30 shadow-xl`;
       default:
         return `${baseClasses} rounded-full`;
     }
@@ -165,7 +163,7 @@ const ModernInterface: React.FC<{ data: MeasurementData[] }> = ({ data }) => {
 
 const ZumbachDemoContent: React.FC = () => {
   const [measurementData, setMeasurementData] = useState<MeasurementData[]>(generateMeasurementData());
-  const [isRunning, setIsRunning] = useState(true);
+  const [isRunning] = useState(true);
 
   useEffect(() => {
     if (!isRunning) return;

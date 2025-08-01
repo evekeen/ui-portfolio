@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, Star, Users, TrendingUp, Image } from 'lucide-react';
+import { ExternalLink, Star, Users, TrendingUp, Image } from 'lucide-react';
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Modal } from '../ui/Modal';
@@ -64,19 +64,12 @@ const renderModalContent = (projectId: string) => {
       return (
         <div className="p-6 space-y-6">
           <p className="text-lg text-gray-600">Enterprise Gantt chart visualization with 7,000+ active installations.</p>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-gray-100 rounded-lg p-8 aspect-video flex items-center justify-center">
-              <div className="text-center text-gray-500">
-                <div className="w-16 h-16 bg-purple-200 rounded-lg mx-auto mb-2 flex items-center justify-center">📊</div>
-                <p className="text-sm">Gantt Chart Interface</p>
-              </div>
-            </div>
-            <div className="bg-gray-100 rounded-lg p-8 aspect-video flex items-center justify-center">
-              <div className="text-center text-gray-500">
-                <div className="w-16 h-16 bg-blue-200 rounded-lg mx-auto mb-2 flex items-center justify-center">⚙️</div>
-                <p className="text-sm">Timeline Management</p>
-              </div>
-            </div>
+          <div className="flex justify-center">
+            <img 
+              src="/src/assets/screenshots/gantt.png" 
+              alt="Structure.Gantt Interface" 
+              className="max-w-full h-auto rounded-lg shadow-lg border border-gray-200"
+            />
           </div>
         </div>
       );
@@ -85,19 +78,12 @@ const renderModalContent = (projectId: string) => {
       return (
         <div className="p-6 space-y-6">
           <p className="text-lg text-gray-600">Jira portfolio management platform used by 5,000+ organizations.</p>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-gray-100 rounded-lg p-8 aspect-video flex items-center justify-center">
-              <div className="text-center text-gray-500">
-                <div className="w-16 h-16 bg-green-200 rounded-lg mx-auto mb-2 flex items-center justify-center">🏗️</div>
-                <p className="text-sm">Project Structure</p>
-              </div>
-            </div>
-            <div className="bg-gray-100 rounded-lg p-8 aspect-video flex items-center justify-center">
-              <div className="text-center text-gray-500">
-                <div className="w-16 h-16 bg-orange-200 rounded-lg mx-auto mb-2 flex items-center justify-center">📈</div>
-                <p className="text-sm">Portfolio Dashboard</p>
-              </div>
-            </div>
+          <div className="flex justify-center">
+            <img 
+              src="/src/assets/screenshots/structure.png" 
+              alt="Structure by Tempo Interface" 
+              className="max-w-full h-auto rounded-lg shadow-lg border border-gray-200"
+            />
           </div>
         </div>
       );
