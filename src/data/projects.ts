@@ -2,6 +2,23 @@ import { type Project } from '../types';
 
 export const projects: Project[] = [
   {
+    id: 'ace-trace',
+    title: 'Ace Trace - Golf Shot Tracing',
+    subtitle: 'Computer Vision Sports App',
+    description: 'Created mobile sports video editor with custom computer vision model for golf ball flight tracking. Achieved 6,000 paying subscribers with 4.4 App Store rating through on-device ML inference. Successfully sold to strategic acquirer.',
+    technologies: ['Swift', 'SwiftUI', 'Jetpack Compose', 'PyTorch', 'Computer Vision', 'Video Processing'],
+    highlights: [
+      '6,000 paying subscribers with $15K MRR',
+      '4.4 App Store rating with 1,100+ reviews',
+      'On-device neural network inference',
+      'Real-time video overlay rendering at 60fps',
+      'Successfully sold - strategic exit achieved'
+    ],
+    imageUrl: '/images/ace-trace-preview.jpg',
+    websiteUrl: 'https://acetrace.app',
+    category: 'mobile'
+  },
+  {
     id: 'enabled-health',
     title: 'Enabled Health AI Trainer',
     subtitle: 'Medical Device UI for Elderly Patients',
@@ -21,7 +38,7 @@ export const projects: Project[] = [
     id: 'structure-gantt',
     title: 'Structure.Gantt by Tempo',
     subtitle: 'Enterprise Gantt Chart Visualization',
-    description: 'Led development of Structure.Gantt supporting 7,000+ active installations. Created complex enterprise-scale React component library with advanced timeline management and dependency visualization.',
+    description: 'Led development of Structure.Gantt supporting 7,000+ active installations. Created complex enterprise-scale React component library with advanced timeline management and dependency visualization. Implemented extensive React performance optimizations including component memoization, virtualization, and selective re-rendering to handle heavy frontend complexity with thousands of components and complex dependency chains.',
     technologies: ['React', 'TypeScript', 'Java', 'Kotlin', 'Atlassian SDK', 'Redux'],
     highlights: [
       '7,000+ active enterprise installations',
@@ -50,23 +67,6 @@ export const projects: Project[] = [
     imageUrl: '/images/structure-preview.jpg',
     websiteUrl: 'https://marketplace.atlassian.com/apps/34717/structure-by-tempo-jira-portfolio-management-ppm',
     category: 'enterprise'
-  },
-  {
-    id: 'ace-trace',
-    title: 'Ace Trace - Golf Shot Tracing',
-    subtitle: 'Computer Vision Sports App',
-    description: 'Created mobile sports video editor with custom computer vision model for golf ball flight tracking. Achieved 6,000 paying subscribers with 4.4 App Store rating through on-device ML inference. Successfully sold to strategic acquirer.',
-    technologies: ['Swift', 'SwiftUI', 'Jetpack Compose', 'PyTorch', 'Computer Vision', 'Video Processing'],
-    highlights: [
-      '6,000 paying subscribers with $15K MRR',
-      '4.4 App Store rating with 1,100+ reviews',
-      'On-device neural network inference',
-      'Real-time video overlay rendering at 60fps',
-      'Successfully sold - strategic exit achieved'
-    ],
-    imageUrl: '/images/ace-trace-preview.jpg',
-    websiteUrl: 'https://acetrace.app',
-    category: 'mobile'
   }
 ];
 
