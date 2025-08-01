@@ -34,6 +34,29 @@ const defaultTheme: IndustrialTheme = {
 };
 
 const presetConfigs: Record<string, IndustrialTheme> = {
+  'default': {
+    id: 'default',
+    name: 'Default',
+    colors: {
+      primary: '#2563eb',
+      secondary: '#64748b',
+      accent: '#0ea5e9',
+      background: '#ffffff',
+      text: '#1f2937',
+      error: '#dc2626',
+      warning: '#f59e0b',
+      success: '#10b981',
+    },
+    typography: {
+      scale: 'standard',
+      fontFamily: 'Inter',
+    },
+    components: {
+      buttonStyle: 'raised',
+      cardLayout: 'spacious',
+      dataDisplay: 'numeric',
+    },
+  },
   'factory-floor': {
     id: 'factory-floor',
     name: 'Factory Floor',

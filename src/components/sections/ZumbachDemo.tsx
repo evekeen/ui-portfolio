@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Play, Pause, Settings, Zap, ChevronDown, ChevronUp, DollarSign, Clock, Users, Target } from 'lucide-react';
-import { ThemeProvider } from '../../contexts/ThemeContext';
+import { Play, Pause, Settings, Zap, DollarSign, Clock, Users, Target, Square, RotateCcw } from 'lucide-react';
+import { ThemeProvider, useTheme } from '../../contexts/ThemeContext';
 import { StyleControlPanel } from '../ui/StyleControlPanel';
 import { MeasurementDisplay } from '../ui/MeasurementDisplay';
 import { IndustrialButton } from '../ui/IndustrialButton';
@@ -67,11 +67,12 @@ const LegacyInterface: React.FC<{ data: MeasurementData[] }> = ({ data }) => (
           </div>
         </div>
       ))}
-      <div className="col-span-2 border-2 border-gray-400 bg-gray-300 p-2 flex items-center justify-center">
+      <div className="col-span-2 border-2 border-gray-400 bg-gray-300 p-2 flex items-center justify-between">
         <span className="text-black font-semibold">No errors</span>
-        <div className="ml-auto flex gap-2">
-          <div className="w-6 h-6 bg-gray-500"></div>
-          <div className="w-6 h-6 bg-gray-500"></div>
+        <div className="flex gap-1">
+          <IndustrialButton variant="primary" styleOverride="industrial" className="!px-2 !py-1 !text-xs">START</IndustrialButton>
+          <IndustrialButton variant="secondary" styleOverride="industrial" className="!px-2 !py-1 !text-xs">STOP</IndustrialButton>
+          <IndustrialButton variant="danger" styleOverride="industrial" className="!px-2 !py-1 !text-xs">RESET</IndustrialButton>
         </div>
       </div>
     </div>
@@ -79,6 +80,28 @@ const LegacyInterface: React.FC<{ data: MeasurementData[] }> = ({ data }) => (
 );
 
 const ModernInterface: React.FC<{ data: MeasurementData[] }> = ({ data }) => {
+  const [isSystemRunning, setIsSystemRunning] = useState(true);
+  const { currentTheme } = useTheme();
+  
+  const getButtonStyle = () => {
+    const { buttonStyle } = currentTheme.components;
+    
+    const baseClasses = "w-12 h-12 flex items-center justify-center transition-all duration-200";
+    
+    switch (buttonStyle) {
+      case 'flat':
+        return `${baseClasses} rounded-lg`;
+      case 'raised':
+        return `${baseClasses} rounded-lg shadow-lg hover:shadow-xl`;
+      case 'outlined':
+        return `${baseClasses} rounded-lg border-2`;
+      case 'glassmorphism':
+        return `${baseClasses} rounded-2xl backdrop-blur-md bg-white/20 border border-white/30 shadow-xl`;
+      default:
+        return `${baseClasses} rounded-full`;
+    }
+  };
+  
   return (
     <div className="min-h-[400px] p-4 rounded-lg" style={{ backgroundColor: '#f8fafc' }}>
       <div className="grid grid-cols-2 gap-4 h-full">
@@ -87,14 +110,53 @@ const ModernInterface: React.FC<{ data: MeasurementData[] }> = ({ data }) => {
         ))}
       </div>
       <div className="mt-4 flex justify-between items-center">
-        <div className="flex gap-2">
-          <IndustrialButton variant="primary">Start</IndustrialButton>
-          <IndustrialButton variant="secondary">Stop</IndustrialButton>
-          <IndustrialButton variant="danger">Reset</IndustrialButton>
+        <div className="flex gap-3">
+          <button
+            onClick={() => setIsSystemRunning(true)}
+            className={`${getButtonStyle()} ${
+              isSystemRunning 
+                ? 'bg-green-500 text-white shadow-lg' 
+                : 'bg-gray-200 text-gray-600 hover:bg-green-100'
+            } ${currentTheme.components.buttonStyle === 'outlined' ? 'border-green-500' : ''}`}
+            title="Start System"
+          >
+            <Play className="w-5 h-5" fill={isSystemRunning ? 'white' : 'currentColor'} />
+          </button>
+          <button
+            onClick={() => setIsSystemRunning(false)}
+            className={`${getButtonStyle()} ${
+              !isSystemRunning 
+                ? 'bg-red-500 text-white shadow-lg' 
+                : 'bg-gray-200 text-gray-600 hover:bg-red-100'
+            } ${currentTheme.components.buttonStyle === 'outlined' ? 'border-red-500' : ''}`}
+            title="Stop System"
+          >
+            <Square className="w-4 h-4" fill={!isSystemRunning ? 'white' : 'currentColor'} />
+          </button>
+          <button
+            onClick={() => {
+              setIsSystemRunning(false);
+              setTimeout(() => setIsSystemRunning(true), 500);
+            }}
+            className={`${getButtonStyle()} bg-gray-200 text-gray-600 hover:bg-blue-100 hover:text-blue-600 ${
+              currentTheme.components.buttonStyle === 'outlined' ? 'border-blue-500' : ''
+            }`}
+            title="Reset System"
+          >
+            <RotateCcw className="w-4 h-4" />
+          </button>
         </div>
-        <div className="flex items-center gap-2 text-green-600">
-          <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-          <span className="font-medium">System Operating</span>
+        <div className="flex items-center gap-2">
+          <div className={`w-3 h-3 rounded-full ${
+            isSystemRunning 
+              ? 'bg-green-500 animate-pulse' 
+              : 'bg-red-500'
+          }`}></div>
+          <span className={`font-medium ${
+            isSystemRunning ? 'text-green-600' : 'text-red-600'
+          }`}>
+            {isSystemRunning ? 'System Operating' : 'System Stopped'}
+          </span>
         </div>
       </div>
     </div>
@@ -104,7 +166,6 @@ const ModernInterface: React.FC<{ data: MeasurementData[] }> = ({ data }) => {
 const ZumbachDemoContent: React.FC = () => {
   const [measurementData, setMeasurementData] = useState<MeasurementData[]>(generateMeasurementData());
   const [isRunning, setIsRunning] = useState(true);
-  const [isDemoOpen, setIsDemoOpen] = useState(false);
 
   useEffect(() => {
     if (!isRunning) return;
@@ -241,66 +302,46 @@ const ZumbachDemoContent: React.FC = () => {
           </Button>
         </motion.div>
 
-        {/* Interactive Demo Toggle */}
+        {/* Interactive Demo Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-8"
+          className="text-center mb-16"
         >
-          <button
-            onClick={() => setIsDemoOpen(!isDemoOpen)}
-            className="inline-flex items-center gap-3 bg-white rounded-xl shadow-lg border border-gray-200 px-6 py-4 hover:shadow-xl transition-all"
-          >
-            <Settings className="w-6 h-6 text-blue-600" />
-            <span className="text-lg font-semibold text-gray-900">
-              {isDemoOpen ? 'Hide' : 'View'} Interactive UI Demo
-            </span>
-            {isDemoOpen ? <ChevronUp className="w-5 h-5 text-gray-500" /> : <ChevronDown className="w-5 h-5 text-gray-500" />}
-          </button>
+          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
+            Interactive UI Demo
+          </h2>
+          <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-12">
+            Experience how device interfaces can be modernized with customizable components, 
+            real-time data visualization, and industrial-grade design patterns.
+          </p>
         </motion.div>
 
-        {/* Collapsible Demo Section */}
-        {isDemoOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.5 }}
-            className="overflow-hidden"
-          >
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          viewport={{ once: true }}
+        >
             <div className="text-center mb-8">
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-6">
-                Experience how device interfaces can be modernized with customizable components, 
-                real-time data visualization, and industrial-grade design patterns.
-              </p>
               
-              <div className="flex justify-center items-center gap-4 mb-8">
-                <button
-                  onClick={() => setIsRunning(!isRunning)}
-                  className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
-                >
-                  {isRunning ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-                  {isRunning ? 'Pause' : 'Start'} Real-time Data
-                </button>
-              </div>
-
-              {/* Embedded Style Control Panel */}
+              {/* Style Control Panel */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="mb-8"
               >
-                <div className="bg-white rounded-xl shadow-lg border border-blue-200/50 p-4">
-                  <div className="text-center mb-4">
-                    <h3 className="text-lg font-bold text-gray-900 mb-1 flex items-center justify-center gap-2">
-                      <Settings className="w-5 h-5 text-blue-600" />
-                      Customize Interface
+                <div className="bg-white rounded-xl shadow-lg border border-blue-200/50 p-6 max-w-4xl mx-auto">
+                  <div className="text-center mb-6">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2 flex items-center justify-center gap-2">
+                      <Settings className="w-6 h-6 text-blue-600" />
+                      Customize Interface Styles
                     </h3>
                     <p className="text-sm text-gray-600">
-                      Try different styles and see changes instantly below
+                      Try different presets and styles to see changes instantly in the interfaces below
                     </p>
                   </div>
                   <StyleControlPanel embedded={true} />
@@ -321,7 +362,7 @@ const ZumbachDemoContent: React.FC = () => {
                 Current Interface
                 <span className="text-sm bg-red-100 text-red-700 px-3 py-1 rounded-full">Legacy</span>
               </h3>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-600 mb-4 text-sm">
                 Typical industrial interface with limited customization and basic data display.
               </p>
               <LegacyInterface data={measurementData} />
@@ -350,7 +391,7 @@ const ZumbachDemoContent: React.FC = () => {
                 Modernized Interface
                 <span className="text-sm bg-green-100 text-green-700 px-3 py-1 rounded-full">React</span>
               </h3>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-600 mb-4 text-sm">
                 Modern React-based interface with full customization and multiple display modes.
               </p>
               <ModernInterface data={measurementData} />
@@ -407,8 +448,7 @@ const ZumbachDemoContent: React.FC = () => {
             </p>
           </div>
         </motion.div>
-          </motion.div>
-        )}
+        </motion.div>
       </div>
     </div>
   );

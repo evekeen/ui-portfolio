@@ -39,7 +39,7 @@ export const StyleControlPanel: React.FC<StyleControlPanelProps> = ({ embedded =
       <div className="space-y-4">
         {/* Quick Presets - Horizontal Layout */}
         <div>
-          <h4 className="font-medium text-gray-900 mb-3">Quick Presets</h4>
+          <h4 className="font-medium text-gray-900 mb-3 text-left">Quick Presets</h4>
           <div className="flex gap-3 flex-wrap">
             {Object.entries(presetConfigs).map(([id, preset]) => (
               <button
@@ -64,13 +64,6 @@ export const StyleControlPanel: React.FC<StyleControlPanelProps> = ({ embedded =
                 <span className="text-sm">{preset.name}</span>
               </button>
             ))}
-            <button
-              onClick={resetTheme}
-              className="px-3 py-2 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-lg transition-colors flex items-center gap-1 text-sm"
-            >
-              <RotateCcw className="w-3 h-3" />
-              Reset
-            </button>
           </div>
         </div>
 
@@ -98,7 +91,7 @@ export const StyleControlPanel: React.FC<StyleControlPanelProps> = ({ embedded =
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="text-sm font-medium text-gray-700">Size:</span>
+            <span className="text-sm font-medium text-gray-700">Font Size:</span>
             <div className="flex gap-1">
               {typographyScales.map((scale) => (
                 <button
