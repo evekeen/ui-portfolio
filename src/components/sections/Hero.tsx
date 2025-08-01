@@ -55,7 +55,7 @@ export const Hero: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-xl sm:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto"
         >
-          Full-Stack Development • Mobile Apps • Computer Vision • Enterprise Software
+          Full-Stack Development • UI/UX Design • Mobile Apps
         </motion.p>
 
         <motion.div
@@ -104,10 +104,10 @@ export const Hero: React.FC = () => {
           <p className="text-gray-500 mb-4 text-sm">Core Technologies:</p>
           <div className="flex flex-wrap justify-center gap-3">
             {[
-              'Swift & iOS',
+              'Swift & Mobile Apps',
               'React & TypeScript', 
               'Python & PyTorch',
-              'Node.js & Cloud'
+              'Scalable Solutions'
             ].map((skill, index) => (
               <motion.span
                 key={skill}
