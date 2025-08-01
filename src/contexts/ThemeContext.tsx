@@ -71,7 +71,7 @@ const presetConfigs: Record<string, IndustrialTheme> = {
       success: '#34d399',
     },
     typography: {
-      scale: 'extra-large',
+      scale: 'compact',
       fontFamily: 'JetBrains Mono',
     },
     components: {

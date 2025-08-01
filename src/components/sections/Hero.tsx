@@ -35,6 +35,21 @@ export const Hero: React.FC = () => {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        {/* Profile Photo and Name */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="mb-8"
+        >
+          <img 
+            src="/alexander-ivkin-photo.jpg" 
+            alt="Alexander Ivkin" 
+            className="w-32 h-32 rounded-full mx-auto shadow-2xl border-4 border-white/20 backdrop-blur-sm mb-4"
+          />
+          <h2 className="text-2xl font-semibold text-gray-700">Alexander Ivkin</h2>
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
