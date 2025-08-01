@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Play, Pause, Settings, Zap } from 'lucide-react';
+import { Play, Pause, Settings, Zap, ChevronDown, ChevronUp, DollarSign, Clock, Users, Target } from 'lucide-react';
 import { ThemeProvider } from '../../contexts/ThemeContext';
 import { StyleControlPanel } from '../ui/StyleControlPanel';
 import { MeasurementDisplay } from '../ui/MeasurementDisplay';
 import { IndustrialButton } from '../ui/IndustrialButton';
+import { Button } from '../ui/Button';
 import { type MeasurementData } from '../../types';
 
 // Simulated measurement data matching Zumbach interface
@@ -103,6 +104,7 @@ const ModernInterface: React.FC<{ data: MeasurementData[] }> = ({ data }) => {
 const ZumbachDemoContent: React.FC = () => {
   const [measurementData, setMeasurementData] = useState<MeasurementData[]>(generateMeasurementData());
   const [isRunning, setIsRunning] = useState(true);
+  const [isDemoOpen, setIsDemoOpen] = useState(false);
 
   useEffect(() => {
     if (!isRunning) return;
@@ -117,53 +119,191 @@ const ZumbachDemoContent: React.FC = () => {
   return (
     <div className="relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
+        {/* Proposal Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
-            Interactive Zumbach Interface Demo
+            Device UI Modernization Proposal
           </h2>
-          <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
-            Experience how I would modernize Zumbach's measurement interface with customizable components, 
-            real-time data visualization, and industrial-grade design patterns.
+          <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-12">
+            Transform your legacy device interfaces into modern, React-based solutions with 
+            component libraries, agile development practices, and continuous user feedback.
           </p>
-          
-          <div className="flex justify-center items-center gap-4 mb-8">
-            <button
-              onClick={() => setIsRunning(!isRunning)}
-              className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+
+          {/* Proposal Cards */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-xl shadow-lg p-6 border border-green-200"
             >
-              {isRunning ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-              {isRunning ? 'Pause' : 'Start'} Real-time Data
-            </button>
+              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <DollarSign className="w-6 h-6 text-green-600" />
+              </div>
+              <h3 className="text-2xl font-bold text-green-600 mb-2">$110/hr</h3>
+              <p className="text-gray-600 text-sm">Competitive hourly rate for senior full-stack development</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-xl shadow-lg p-6 border border-blue-200"
+            >
+              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Clock className="w-6 h-6 text-blue-600" />
+              </div>
+              <h3 className="text-2xl font-bold text-blue-600 mb-2">32h/week</h3>
+              <p className="text-gray-600 text-sm">Dedicated weekly commitment for consistent progress</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-xl shadow-lg p-6 border border-purple-200"
+            >
+              <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Users className="w-6 h-6 text-purple-600" />
+              </div>
+              <h3 className="text-lg font-bold text-purple-600 mb-2">Team Lead</h3>
+              <p className="text-gray-600 text-sm">Mentoring, agile processes, and technical leadership</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-xl shadow-lg p-6 border border-orange-200"
+            >
+              <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Target className="w-6 h-6 text-orange-600" />
+              </div>
+              <h3 className="text-lg font-bold text-orange-600 mb-2">User-Centered</h3>
+              <p className="text-gray-600 text-sm">User interviews, feedback loops, and continuous improvement</p>
+            </motion.div>
           </div>
 
-          {/* Embedded Style Control Panel */}
+          {/* Scope of Work */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
             viewport={{ once: true }}
-            className="mb-8"
+            className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl p-8 mb-12"
           >
-            <div className="bg-white rounded-xl shadow-lg border border-blue-200/50 p-4">
-              <div className="text-center mb-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-1 flex items-center justify-center gap-2">
-                  <Settings className="w-5 h-5 text-blue-600" />
-                  Customize Interface
-                </h3>
-                <p className="text-sm text-gray-600">
-                  Try different styles and see changes instantly below
-                </p>
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">Scope of Work</h3>
+            <div className="grid md:grid-cols-2 gap-8 text-left">
+              <div>
+                <h4 className="font-semibold text-gray-900 mb-4">Technical Development</h4>
+                <ul className="space-y-2 text-gray-700">
+                  <li>• Modernize device dashboard UI with React components</li>
+                  <li>• Build modular, reusable component library</li>
+                  <li>• Implement responsive design for 7" displays</li>
+                  <li>• Optimize for distance readability and touch interaction</li>
+                  <li>• Set up CI/CD pipeline and automated testing</li>
+                </ul>
               </div>
-              <StyleControlPanel embedded={true} />
+              <div>
+                <h4 className="font-semibold text-gray-900 mb-4">Leadership & Process</h4>
+                <ul className="space-y-2 text-gray-700">
+                  <li>• Mentor development team on React best practices</li>
+                  <li>• Set up agile development processes and workflows</li>
+                  <li>• Conduct user interviews with technicians and operators</li>
+                  <li>• Collect feedback and iterate on UI/UX improvements</li>
+                  <li>• Establish design system and coding standards</li>
+                </ul>
+              </div>
             </div>
           </motion.div>
+
+          {/* CTA */}
+          <Button
+            size="lg"
+            href="https://calendly.com/ivkindev/30-minutes"
+            external
+            className="mb-12"
+          >
+            Schedule Technical Discussion
+          </Button>
         </motion.div>
+
+        {/* Interactive Demo Toggle */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-8"
+        >
+          <button
+            onClick={() => setIsDemoOpen(!isDemoOpen)}
+            className="inline-flex items-center gap-3 bg-white rounded-xl shadow-lg border border-gray-200 px-6 py-4 hover:shadow-xl transition-all"
+          >
+            <Settings className="w-6 h-6 text-blue-600" />
+            <span className="text-lg font-semibold text-gray-900">
+              {isDemoOpen ? 'Hide' : 'View'} Interactive UI Demo
+            </span>
+            {isDemoOpen ? <ChevronUp className="w-5 h-5 text-gray-500" /> : <ChevronDown className="w-5 h-5 text-gray-500" />}
+          </button>
+        </motion.div>
+
+        {/* Collapsible Demo Section */}
+        {isDemoOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.5 }}
+            className="overflow-hidden"
+          >
+            <div className="text-center mb-8">
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-6">
+                Experience how device interfaces can be modernized with customizable components, 
+                real-time data visualization, and industrial-grade design patterns.
+              </p>
+              
+              <div className="flex justify-center items-center gap-4 mb-8">
+                <button
+                  onClick={() => setIsRunning(!isRunning)}
+                  className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  {isRunning ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                  {isRunning ? 'Pause' : 'Start'} Real-time Data
+                </button>
+              </div>
+
+              {/* Embedded Style Control Panel */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="mb-8"
+              >
+                <div className="bg-white rounded-xl shadow-lg border border-blue-200/50 p-4">
+                  <div className="text-center mb-4">
+                    <h3 className="text-lg font-bold text-gray-900 mb-1 flex items-center justify-center gap-2">
+                      <Settings className="w-5 h-5 text-blue-600" />
+                      Customize Interface
+                    </h3>
+                    <p className="text-sm text-gray-600">
+                      Try different styles and see changes instantly below
+                    </p>
+                  </div>
+                  <StyleControlPanel embedded={true} />
+                </div>
+              </motion.div>
+            </div>
 
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Legacy Interface */}
@@ -264,6 +404,8 @@ const ZumbachDemoContent: React.FC = () => {
             </p>
           </div>
         </motion.div>
+          </motion.div>
+        )}
       </div>
     </div>
   );
