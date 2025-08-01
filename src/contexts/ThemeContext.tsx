@@ -23,7 +23,7 @@ const defaultTheme: IndustrialTheme = {
     success: '#10b981',
   },
   typography: {
-    scale: 'standard',
+    scale: 'compact',
     fontFamily: 'Inter',
   },
   components: {
@@ -48,7 +48,7 @@ const presetConfigs: Record<string, IndustrialTheme> = {
       success: '#10b981',
     },
     typography: {
-      scale: 'standard',
+      scale: 'compact',
       fontFamily: 'Inter',
     },
     components: {
@@ -117,7 +117,7 @@ const presetConfigs: Record<string, IndustrialTheme> = {
       success: '#4ade80',
     },
     typography: {
-      scale: 'standard',
+      scale: 'compact',
       fontFamily: 'Inter',
     },
     components: {
@@ -137,7 +137,19 @@ interface ThemeProviderProps {
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [currentTheme, setCurrentTheme] = useState<IndustrialTheme>(() => {
     const saved = localStorage.getItem('industrial-theme');
-    return saved ? JSON.parse(saved) : defaultTheme;
+    if (saved) {
+      const parsedTheme = JSON.parse(saved);
+      // Check if this is an old theme without the updated defaults
+      const version = localStorage.getItem('theme-version');
+      if (version !== '2.0') {
+        localStorage.removeItem('industrial-theme');
+        localStorage.setItem('theme-version', '2.0');
+        return defaultTheme;
+      }
+      return parsedTheme;
+    }
+    localStorage.setItem('theme-version', '2.0');
+    return defaultTheme;
   });
 
   useEffect(() => {

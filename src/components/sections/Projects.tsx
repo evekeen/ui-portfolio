@@ -63,7 +63,7 @@ const renderModalContent = (projectId: string) => {
     case 'structure-gantt':
       return (
         <div className="p-6 space-y-6">
-          <p className="text-lg text-gray-600">Enterprise Gantt chart visualization with 14,000+ active installations.</p>
+          <p className="text-lg text-gray-600">Enterprise Gantt chart visualization with 7,000+ active installations.</p>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-gray-100 rounded-lg p-8 aspect-video flex items-center justify-center">
               <div className="text-center text-gray-500">

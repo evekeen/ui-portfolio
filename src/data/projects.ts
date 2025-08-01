@@ -21,10 +21,10 @@ export const projects: Project[] = [
     id: 'structure-gantt',
     title: 'Structure.Gantt by Tempo',
     subtitle: 'Enterprise Gantt Chart Visualization',
-    description: 'Led development of Structure.Gantt supporting 14,000+ active installations. Created complex enterprise-scale React component library with advanced timeline management and dependency visualization.',
-    technologies: ['React', 'TypeScript', 'Java', 'Atlassian SDK', 'D3.js', 'Redux'],
+    description: 'Led development of Structure.Gantt supporting 7,000+ active installations. Created complex enterprise-scale React component library with advanced timeline management and dependency visualization.',
+    technologies: ['React', 'TypeScript', 'Java', 'Kotlin', 'Atlassian SDK', 'Redux'],
     highlights: [
-      '14,000+ active enterprise installations',
+      '7,000+ active enterprise installations',
       'Complex dependency visualization and management',
       'Real-time collaboration and data synchronization',
       'Customizable timeline views and resource allocation',
@@ -39,7 +39,7 @@ export const projects: Project[] = [
     title: 'Structure by Tempo',
     subtitle: 'Jira Portfolio Management Platform',
     description: 'Developed modular React component library for enterprise project portfolio management. Created hierarchical project views and cross-team visualization tools used by 5,000+ organizations.',
-    technologies: ['React', 'TypeScript', 'Java', 'Atlassian Connect', 'REST APIs', 'PostgreSQL'],
+    technologies: ['React', 'TypeScript', 'Java', 'Atlassian Connect', 'REST APIs'],
     highlights: [
       '5,000+ organizations using the platform',
       'Hierarchical project structure management',
