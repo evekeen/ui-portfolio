@@ -116,8 +116,6 @@ const ZumbachDemoContent: React.FC = () => {
 
   return (
     <div className="relative">
-      <StyleControlPanel />
-      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -142,11 +140,29 @@ const ZumbachDemoContent: React.FC = () => {
               {isRunning ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
               {isRunning ? 'Pause' : 'Start'} Real-time Data
             </button>
-            <div className="flex items-center gap-2 text-gray-600">
-              <Settings className="w-4 h-4" />
-              <span className="text-sm">Use controls panel to customize appearance</span>
-            </div>
           </div>
+
+          {/* Embedded Style Control Panel */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="mb-8"
+          >
+            <div className="bg-white rounded-xl shadow-lg border border-blue-200/50 p-4">
+              <div className="text-center mb-4">
+                <h3 className="text-lg font-bold text-gray-900 mb-1 flex items-center justify-center gap-2">
+                  <Settings className="w-5 h-5 text-blue-600" />
+                  Customize Interface
+                </h3>
+                <p className="text-sm text-gray-600">
+                  Try different styles and see changes instantly below
+                </p>
+              </div>
+              <StyleControlPanel embedded={true} />
+            </div>
+          </motion.div>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-8">

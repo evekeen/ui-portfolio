@@ -3,7 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Settings, Palette, Type, Layout, BarChart3, RotateCcw } from 'lucide-react';
 import { useTheme } from '../../contexts/ThemeContext';
 
-export const StyleControlPanel: React.FC = () => {
+interface StyleControlPanelProps {
+  embedded?: boolean;
+}
+
+export const StyleControlPanel: React.FC<StyleControlPanelProps> = ({ embedded = false }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('presets');
   const { currentTheme, updateTheme, resetTheme, presetConfigs, applyPreset } = useTheme();
@@ -15,17 +19,113 @@ export const StyleControlPanel: React.FC = () => {
     { id: 'components', label: 'Components', icon: BarChart3 },
   ];
 
-  const colorThemes = [
-    { id: 'light', name: 'Light', colors: { background: '#ffffff', text: '#1f2937' } },
-    { id: 'dark', name: 'Dark', colors: { background: '#111827', text: '#f9fafb' } },
-    { id: 'high-contrast', name: 'High Contrast', colors: { background: '#000000', text: '#ffffff' } },
-  ];
-
   const buttonStyles = [
     { id: 'flat', name: 'Flat' },
     { id: 'raised', name: 'Raised' },
     { id: 'outlined', name: 'Outlined' },
     { id: 'glass', name: 'Glass' },
+  ];
+
+  const typographyScales = [
+    { id: 'compact', name: 'Compact' },
+    { id: 'standard', name: 'Standard' },
+    { id: 'large', name: 'Large' },
+    { id: 'extra-large', name: 'Extra Large' },
+  ];
+
+  // If embedded, render inline controls
+  if (embedded) {
+    return (
+      <div className="space-y-4">
+        {/* Quick Presets - Horizontal Layout */}
+        <div>
+          <h4 className="font-medium text-gray-900 mb-3">Quick Presets</h4>
+          <div className="flex gap-3 flex-wrap">
+            {Object.entries(presetConfigs).map(([id, preset]) => (
+              <button
+                key={id}
+                onClick={() => applyPreset(id)}
+                className={`px-4 py-2 rounded-lg border transition-all flex items-center gap-2 ${
+                  currentTheme.id === id
+                    ? 'border-blue-500 bg-blue-50 text-blue-700 font-medium'
+                    : 'border-gray-300 hover:border-blue-300 bg-white text-gray-700'
+                }`}
+              >
+                <div className="flex gap-1">
+                  <div
+                    className="w-3 h-3 rounded-full border border-white"
+                    style={{ backgroundColor: preset.colors.primary }}
+                  />
+                  <div
+                    className="w-3 h-3 rounded-full border border-white"
+                    style={{ backgroundColor: preset.colors.accent }}
+                  />
+                </div>
+                <span className="text-sm">{preset.name}</span>
+              </button>
+            ))}
+            <button
+              onClick={resetTheme}
+              className="px-3 py-2 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-lg transition-colors flex items-center gap-1 text-sm"
+            >
+              <RotateCcw className="w-3 h-3" />
+              Reset
+            </button>
+          </div>
+        </div>
+
+        {/* Compact Style Controls */}
+        <div className="flex flex-wrap gap-6">
+          <div className="flex items-center gap-3">
+            <span className="text-sm font-medium text-gray-700">Button:</span>
+            <div className="flex gap-1">
+              {buttonStyles.map((style) => (
+                <button
+                  key={style.id}
+                  onClick={() => updateTheme({
+                    components: { ...currentTheme.components, buttonStyle: style.id as any }
+                  })}
+                  className={`px-3 py-1 text-xs rounded border transition-all ${
+                    currentTheme.components.buttonStyle === style.id
+                      ? 'border-blue-500 bg-blue-50 text-blue-700'
+                      : 'border-gray-300 hover:border-gray-400 text-gray-600'
+                  }`}
+                >
+                  {style.name}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <span className="text-sm font-medium text-gray-700">Size:</span>
+            <div className="flex gap-1">
+              {typographyScales.map((scale) => (
+                <button
+                  key={scale.id}
+                  onClick={() => updateTheme({
+                    typography: { ...currentTheme.typography, scale: scale.id as any }
+                  })}
+                  className={`px-3 py-1 text-xs rounded border transition-all ${
+                    currentTheme.typography.scale === scale.id
+                      ? 'border-blue-500 bg-blue-50 text-blue-700'
+                      : 'border-gray-300 hover:border-gray-400 text-gray-600'
+                  }`}
+                >
+                  {scale.name === 'extra-large' ? 'XL' : scale.name.charAt(0).toUpperCase()}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const colorThemes = [
+    { id: 'light', name: 'Light', colors: { background: '#ffffff', text: '#1f2937' } },
+    { id: 'dark', name: 'Dark', colors: { background: '#111827', text: '#f9fafb' } },
+    { id: 'high-contrast', name: 'High Contrast', colors: { background: '#000000', text: '#ffffff' } },
   ];
 
   const cardLayouts = [
@@ -40,13 +140,6 @@ export const StyleControlPanel: React.FC = () => {
     { id: 'graph', name: 'Graph' },
     { id: 'gauge', name: 'Gauge' },
     { id: 'progress', name: 'Progress' },
-  ];
-
-  const typographyScales = [
-    { id: 'compact', name: 'Compact' },
-    { id: 'standard', name: 'Standard' },
-    { id: 'large', name: 'Large' },
-    { id: 'extra-large', name: 'Extra Large' },
   ];
 
   return (
