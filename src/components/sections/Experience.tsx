@@ -218,7 +218,7 @@ export const Experience: React.FC = () => {
             and business acumen to every project.
           </p>
           <Button
-            href="/alexander-ivkin-cv.pdf"
+            href="/alexander-ivkin-cv-short.pdf"
             external
             size="lg"
             className="inline-flex items-center gap-2"
